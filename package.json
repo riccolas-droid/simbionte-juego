@@ -1,45 +1,12 @@
-# Simbionte Programador Nocturno
-
-Plantilla inicial para un juego web sencillo y ampliable por un agente IA.
-
-## Idea
-
-- `main`: versión estable del juego.
-- `agent-lab`: zona donde el agente IA puede experimentar.
-- El agente nocturno propone mejoras, genera niveles, revisa bugs y deja un informe.
-- Nada pasa a producción sin revisión humana.
-
-## Estructura
-
-```txt
-simbionte-programador-nocturno/
-├─ game/
-│  ├─ index.html
-│  ├─ src/
-│  │  ├─ main.js
-│  │  ├─ levels.js
-│  │  └─ hud.js
-├─ agent/
-│  ├─ NIGHTLY_BRIEF.md
-│  ├─ AGENT_RULES.md
-│  ├─ backlog.json
-│  └─ nightly_report_template.md
-├─ .github/
-│  └─ workflows/
-│     └─ nightly-agent.yml
-└─ package.json
-```
-
-## Primer objetivo del agente
-
-Crear mejoras pequeñas y verificables:
-
-1. Añadir un nivel nuevo.
-2. Mejorar el HUD.
-3. Añadir una distorsión visual.
-4. Corregir un bug.
-5. Escribir un informe.
-
-## Regla de oro
-
-El agente puede crear ramas y propuestas, pero no debe publicar directamente.
+{
+  "scripts": {
+    "start": "vite --host 0.0.0.0",
+    "dev": "vite --host 0.0.0.0",
+    "test": "node scripts/smoke-test.js",
+    "agent:brief": "node scripts/create-nightly-brief.js"
+  },
+  "dependencies": {
+    "vite": "latest"
+  },
+  "devDependencies": {}
+}
