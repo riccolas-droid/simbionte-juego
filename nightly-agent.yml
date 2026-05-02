@@ -1,26 +1,31 @@
-[
-  {
-    "id": "SIM-001",
-    "title": "Añadir nivel con espejo falso",
-    "priority": "high",
-    "status": "todo"
-  },
-  {
-    "id": "SIM-002",
-    "title": "Crear Balanfía inferior",
-    "priority": "medium",
-    "status": "todo"
-  },
-  {
-    "id": "SIM-003",
-    "title": "Añadir estado de puzzle: estable/fracturado/contaminado",
-    "priority": "medium",
-    "status": "todo"
-  },
-  {
-    "id": "SIM-004",
-    "title": "Crear informe nocturno automático",
-    "priority": "medium",
-    "status": "todo"
-  }
-]
+name: Nightly Simbionte Agent
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  nightly:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install
+        run: npm install
+
+      - name: Build agent brief
+        run: npm run agent:brief
+
+      - name: Test
+        run: npm test
