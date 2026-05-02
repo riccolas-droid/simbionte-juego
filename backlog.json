@@ -1,0 +1,144 @@
+import { levels } from "./levels.js";
+import { drawHud } from "./hud.js";
+
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+let currentLevelIndex = 0;
+let vanishingPoint = { x: 640, y: 260 };
+let dragging = false;
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+function getLevel() {
+  return levels[currentLevelIndex % levels.length];
+}
+
+function distance(a, b) {
+  const dx = a.x - b.x;
+  const dy = a.y - b.y;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+function scoreLevel(level) {
+  const d = distance(vanishingPoint, level.target);
+  const coherence = Math.max(0, 100 - d / 3);
+  const distortion = 100 - coherence;
+  return { coherence, distortion };
+}
+
+function drawCorridor() {
+  const w = canvas.width;
+  const h = canvas.height;
+
+  const gradient = ctx.createLinearGradient(0, 0, 0, h);
+  gradient.addColorStop(0, "#1d1b22");
+  gradient.addColorStop(1, "#08080b");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, w, h);
+
+  ctx.fillStyle = "rgba(255,255,255,0.06)";
+  ctx.fillRect(w * 0.25, h * 0.18, w * 0.5, h * 0.55);
+
+  ctx.strokeStyle = "rgba(255,255,255,0.08)";
+  ctx.lineWidth = 1;
+  for (let i = 0; i < 12; i++) {
+    const y = h * 0.55 + i * 28;
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(w, y + i * 5);
+    ctx.stroke();
+  }
+
+  ctx.fillStyle = "rgba(170, 220, 255, 0.08)";
+  ctx.fillRect(w * 0.76, h * 0.24, w * 0.12, h * 0.32);
+}
+
+function drawLines(level) {
+  for (const line of level.lines) {
+    ctx.beginPath();
+    ctx.moveTo(line.a.x, line.a.y);
+    ctx.lineTo(vanishingPoint.x, vanishingPoint.y);
+
+    ctx.strokeStyle = line.real
+      ? "rgba(110,255,170,0.85)"
+      : "rgba(255,80,95,0.85)";
+
+    ctx.lineWidth = line.real ? 2 : 3;
+    ctx.stroke();
+  }
+}
+
+function drawVanishingPoint(level) {
+  const s = scoreLevel(level);
+  const stable = s.coherence > 88;
+
+  ctx.save();
+  ctx.translate(vanishingPoint.x, vanishingPoint.y);
+
+  ctx.strokeStyle = stable ? "rgba(230,255,255,1)" : "rgba(255,220,120,1)";
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.arc(0, 0, stable ? 15 : 20, 0, Math.PI * 2);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(-28, 0);
+  ctx.lineTo(28, 0);
+  ctx.moveTo(0, -28);
+  ctx.lineTo(0, 28);
+  ctx.stroke();
+
+  ctx.restore();
+
+  if (stable) {
+    ctx.fillStyle = "rgba(230,255,255,0.85)";
+    ctx.font = "22px system-ui";
+    ctx.fillText("COHERENCIA RESTAURADA", vanishingPoint.x - 120, vanishingPoint.y - 45);
+  }
+}
+
+function loop() {
+  const level = getLevel();
+  const s = scoreLevel(level);
+
+  drawCorridor();
+  drawLines(level);
+  drawVanishingPoint(level);
+
+  drawHud(ctx, {
+    levelName: level.name,
+    coherence: s.coherence,
+    distortion: s.distortion,
+    falseLines: level.lines.filter(l => !l.real).length
+  });
+
+  requestAnimationFrame(loop);
+}
+
+canvas.addEventListener("pointerdown", (e) => {
+  dragging = true;
+  vanishingPoint = { x: e.clientX, y: e.clientY };
+});
+
+canvas.addEventListener("pointermove", (e) => {
+  if (dragging) vanishingPoint = { x: e.clientX, y: e.clientY };
+});
+
+canvas.addEventListener("pointerup", () => {
+  dragging = false;
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.key.toLowerCase() === "n") {
+    currentLevelIndex++;
+    vanishingPoint = { x: 640, y: 260 };
+  }
+});
+
+loop();

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "SIM-001",
+    "title": "Añadir nivel con espejo falso",
+    "priority": "high",
+    "status": "todo"
+  },
+  {
+    "id": "SIM-002",
+    "title": "Crear Balanfía inferior",
+    "priority": "medium",
+    "status": "todo"
+  },
+  {
+    "id": "SIM-003",
+    "title": "Añadir estado de puzzle: estable/fracturado/contaminado",
+    "priority": "medium",
+    "status": "todo"
+  },
+  {
+    "id": "SIM-004",
+    "title": "Crear informe nocturno automático",
+    "priority": "medium",
+    "status": "todo"
+  }
+]
