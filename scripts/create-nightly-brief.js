@@ -1,31 +1,27 @@
-# Brief Nocturno del Simbionte
+const fs = require("fs");
 
-## Estado actual
+const brief = fs.readFileSync("agent/NIGHTLY_BRIEF.md", "utf8");
+const rules = fs.readFileSync("agent/AGENT_RULES.md", "utf8");
+const backlog = fs.readFileSync("agent/backlog.json", "utf8");
 
-Juego web mínimo de perspectiva simbiótica.
+const output = `
+# Prompt para el agente nocturno
 
-## Mecánica central
+Lee estas reglas y mejora el juego con un cambio pequeño y verificable.
 
-El jugador arrastra un punto de fuga hasta restaurar la coherencia visual.
-Las líneas verdes representan geometría estable.
-Las líneas rojas representan contaminación simbiótica.
+${rules}
 
-## Tareas sugeridas
+${brief}
 
-Prioridad 1:
-- Añadir un tercer nivel con un espejo falso.
+Backlog:
+${backlog}
 
-Prioridad 2:
-- Añadir animación suave al punto de fuga cuando está cerca del objetivo.
+Instrucciones:
+- Haz solo una mejora.
+- No rompas el juego.
+- Ejecuta npm test si puedes.
+- Escribe un informe en agent/nightly_report.md.
+`;
 
-Prioridad 3:
-- Añadir una barra inferior de Balanfía: Lógica / Intuición / Distorsión.
-
-Prioridad 4:
-- Crear un pequeño sistema de estado: estable, fracturado, contaminado.
-
-## Tono del proyecto
-
-Raro, elegante, simbiótico, jugable.
-No sobrecargar de lore.
-Primero claridad, luego misterio.
+fs.writeFileSync("agent/COMPILED_AGENT_PROMPT.md", output.trim());
+console.log("Brief compilado en agent/COMPILED_AGENT_PROMPT.md");
