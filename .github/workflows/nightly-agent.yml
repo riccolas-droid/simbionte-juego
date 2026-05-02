@@ -30,13 +30,16 @@ jobs:
       - name: Run AI agent
         run: |
           echo "=== EJECUTANDO SIMBIONTE ==="
+
+          PROMPT=$(cat agent/COMPILED_AGENT_PROMPT.md | jq -Rs .)
+
           curl https://api.openai.com/v1/responses \
             -H "Authorization: Bearer ${{ secrets.OPENAI_API_KEY }}" \
             -H "Content-Type: application/json" \
-            -d '{
-              "model": "gpt-4.1-mini",
-              "input": "Lee el archivo agent/COMPILED_AGENT_PROMPT.md y sugiere una mejora concreta del juego en pocas líneas."
-            }'
+            -d "{
+              \"model\": \"gpt-4.1-mini\",
+              \"input\": $PROMPT
+            }"
 
       - name: Test
         run: npm test
