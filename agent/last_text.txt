@@ -1,5 +1,1 @@
-{
-  "file": "hud.js",
-  "description": "Añadido un indicador pequeño de las líneas falsas en la esquina superior derecha, reforzando la información de HUD sin modificar el área principal.",
-  "code": "ctx.fillStyle = \"#faa\"; ctx.font = \"12px system-ui\"; ctx.fillText(`Falsas: ${state.falseLines}`, canvas.width - 100, 40);"
-}
+"Distorsión restante: ${state.distortion}%"

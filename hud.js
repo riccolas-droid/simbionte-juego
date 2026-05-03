@@ -10,6 +10,7 @@ const state = {
 };
 
 const aiHudLines = [
+  `Distorsión restante: ${state.distortion}%`,
   "Estado: estable",
   "Próxima mutación: ciclo nocturno"
 ];
