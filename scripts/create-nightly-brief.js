@@ -24,6 +24,13 @@ Instrucciones:
 - NO crees funciones nuevas.
 - NO uses export.
 - El código debe estar pensado para insertarse dentro de la zona AI_SAFE_ZONE de hud.js.
+- Dentro de AI_SAFE_ZONE solo puedes usar: ctx, state, canvas.
+
+- No uses variables sueltas como falseLines, coherence o distortion.
+- Usa siempre state.falseLines, state.coherence, state.distortion.
+- No dibujes fondos ni rectángulos dentro de AI_SAFE_ZONE.
+- Solo añade texto o indicadores pequeños.
+
 - No uses import ni export.
 - No reemplaces funciones existentes.
 - NO reemplaces el archivo completo.
