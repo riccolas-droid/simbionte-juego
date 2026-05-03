@@ -51,6 +51,8 @@ function drawHud() {
   // Usa ctx y state. No uses import/export. No crees funciones nuevas.
 // === AI PATCH ===
 ctx.fillText(`Líneas falsas detectadas: ${falseLines} (${Math.round((falseLines / (falseLines + 0.0001)) * 100)}%)`, 38, 152);
+// === AI PATCH ===
+ctx.fillText(`Líneas falsas detectadas: ${falseLines}`, 38, 168);
   // AI_SAFE_ZONE_END
 }
 
