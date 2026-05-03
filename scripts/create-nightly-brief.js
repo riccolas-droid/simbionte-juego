@@ -23,6 +23,9 @@ Instrucciones:
 - Solo puedes modificar hud.js.
 - NO crees funciones nuevas.
 - NO uses export.
+- El código debe estar pensado para insertarse dentro de la zona AI_SAFE_ZONE de hud.js.
+- No uses import ni export.
+- No reemplaces funciones existentes.
 - NO reemplaces el archivo completo.
 - Solo puedes añadir 1 o 2 líneas simples al código existente.
 - La mejora debe ser pequeña y segura.
