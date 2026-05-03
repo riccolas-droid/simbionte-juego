@@ -28,4 +28,6 @@ ctx.fillText("HUD", 38, 30);
 
 // AI_SAFE_ZONE_START
 // El simbionte puede añadir aquí mejoras pequeñas y seguras.
+// === AI PATCH ===
+ctx.fillText(`Coherencia: ${Math.max(0, Math.round(coherence))}%`, 38, 104);
 // AI_SAFE_ZONE_END

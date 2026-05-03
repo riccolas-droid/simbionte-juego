@@ -1,5 +1,5 @@
 {
   "file": "hud.js",
-  "description": "Agrega título 'HUD' para mejorar la accesibilidad visual en el HUD",
-  "code": "ctx.fillText(\"HUD\", 38, 30);"
+  "description": "Agrega un valor mínimo al porcentaje de coherencia para evitar mostrar valores negativos.",
+  "code": "ctx.fillText(`Coherencia: ${Math.max(0, Math.round(coherence))}%`, 38, 104);"
 }
