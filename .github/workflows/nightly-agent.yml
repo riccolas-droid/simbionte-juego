@@ -79,6 +79,13 @@ jobs:
             { print }
           ' hud.js > hud.tmp && mv hud.tmp hud.js
 
+      - name: Write agent status to Supabase
+        run: node scripts/write-agent-status.js coder running "probando escritura automática"
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      
+      
       - name: Test
         run: npm test
 
