@@ -9,6 +9,13 @@ const state = {
   levelName: "Sala I - Punto de fuga"
 };
 
+const aiHudLines = [
+  "Estado: estable",
+  "Próxima mutación: ciclo nocturno"
+];
+
+
+
 function resize() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
