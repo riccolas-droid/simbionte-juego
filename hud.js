@@ -10,6 +10,7 @@ const state = {
 };
 
 const aiHudLines = [
+  `{"message":"Mantén el enfoque en el punto de fuga para mejorar precisión"}`,
   `Distorsión restante: ${state.distortion}%`,
   "Estado: estable",
   "Próxima mutación: ciclo nocturno"

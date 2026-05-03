@@ -1,1 +1,1 @@
-"Distorsión restante: ${state.distortion}%"
+"{\"message\":\"Mantén el enfoque en el punto de fuga para mejorar precisión\"}"

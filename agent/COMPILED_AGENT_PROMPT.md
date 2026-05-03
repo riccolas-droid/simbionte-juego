@@ -213,6 +213,11 @@ Estado actual:
 - El sistema dibuja automáticamente las líneas de aiHudLines.
 - Tú NO debes dibujar nada directamente.
 
+Memoria operativa:
+- No repitas una línea similar a las ya existentes en aiHudLines.
+- Si ya existe distorsión, coherencia o líneas falsas, no vuelvas a formular esas métricas.
+- Prioriza consejos, estado interpretado o siguiente acción del jugador.
+
 Objetivo:
 - Añadir UNA sola línea informativa al HUD.
 - La línea debe ayudar al jugador a entender mejor el estado del juego.
