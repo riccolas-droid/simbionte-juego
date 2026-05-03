@@ -42,12 +42,29 @@ jobs:
 
           cat agent/last_response.json
 
-
       - name: Extract AI text
         run: |
           cat agent/last_response.json | jq -r '.output[0].content[0].text' > agent/last_text.txt
           cat agent/last_text.txt
-          
+
+      - name: Apply AI patch real safe mode
+        run: |
+          JSON=$(cat agent/last_text.txt)
+
+          FILE=$(echo "$JSON" | jq -r '.file')
+          CODE=$(echo "$JSON" | jq -r '.code')
+
+          echo "Archivo objetivo: $FILE"
+
+          if [[ "$FILE" != "hud.js" && "$FILE" != "index.html" ]]; then
+            echo "Archivo no permitido. Abortando."
+            exit 1
+          fi
+
+          echo "" >> "$FILE"
+          echo "// === AI PATCH $(date) ===" >> "$FILE"
+          echo "$CODE" >> "$FILE"
+
       - name: Test
         run: npm test
 
@@ -56,7 +73,7 @@ jobs:
           git config --global user.name "simbionte-bot"
           git config --global user.email "bot@simbionte.ai"
 
-          git add agent/last_response.json agent/last_text.txt agent/COMPILED_AGENT_PROMPT.md
+          git add agent/last_response.json agent/last_text.txt agent/COMPILED_AGENT_PROMPT.md hud.js index.html
 
-          git commit -m "🤖 Nightly: save agent response $(date)" || echo "No changes to commit"
+          git commit -m "🤖 Nightly: apply agent patch $(date)" || echo "No changes to commit"
           git push
