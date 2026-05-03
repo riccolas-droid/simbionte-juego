@@ -1,5 +1,5 @@
 {
   "file": "hud.js",
-  "description": "Agrega un texto de ayuda en el HUD para indicar que la tecla 'N' cambia de nivel.",
-  "code": "ctx.fillText(\"Presiona 'N' para siguiente nivel\", 38, 176);"
+  "description": "Mejora la legibilidad del HUD subrayando el título VISIÓN SIMBIÓTICA.",
+  "code": "ctx.fillText(\"VISIÓN SIMBIÓTICA\", 38, 50);\nctx.fillRect(38, 54, ctx.measureText(\"VISIÓN SIMBIÓTICA\").width, 2);"
 }

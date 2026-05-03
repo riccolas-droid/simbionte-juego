@@ -55,6 +55,9 @@ ctx.fillText(`Líneas falsas detectadas: ${falseLines} (${Math.round((falseLines
 ctx.fillText(`Líneas falsas detectadas: ${falseLines}`, 38, 168);
 // === AI PATCH ===
 ctx.fillText("Presiona 'N' para siguiente nivel", 38, 176);
+// === AI PATCH ===
+ctx.fillText("VISIÓN SIMBIÓTICA", 38, 50);
+ctx.fillRect(38, 54, ctx.measureText("VISIÓN SIMBIÓTICA").width, 2);
   // AI_SAFE_ZONE_END
 }
 
