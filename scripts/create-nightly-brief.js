@@ -24,7 +24,16 @@ Instrucciones:
 - NO crees funciones nuevas.
 - NO uses export.
 - El código debe estar pensado para insertarse dentro de la zona AI_SAFE_ZONE de hud.js.
-- Dentro de AI_SAFE_ZONE solo puedes usar: ctx, state, canvas.
+
+
+-No escribas llamadas directas a ctx.
+-No uses coordenadas.
+-No uses canvas.width.
+-Solo puedes añadir una línea dentro de aiHudLines.
+-Devuelve únicamente el texto que quieres añadir.
+ 
+
+
 
 - No uses variables sueltas como falseLines, coherence o distortion.
 - Usa siempre state.falseLines, state.coherence, state.distortion.
