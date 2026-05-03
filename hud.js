@@ -25,3 +25,7 @@ ctx.stroke();
 
 // === AI PATCH Sun May  3 02:07:45 UTC 2026 ===
 ctx.fillText("HUD", 38, 30);
+
+// AI_SAFE_ZONE_START
+// El simbionte puede añadir aquí mejoras pequeñas y seguras.
+// AI_SAFE_ZONE_END
