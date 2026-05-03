@@ -53,6 +53,8 @@ function drawHud() {
 ctx.fillText(`Líneas falsas detectadas: ${falseLines} (${Math.round((falseLines / (falseLines + 0.0001)) * 100)}%)`, 38, 152);
 // === AI PATCH ===
 ctx.fillText(`Líneas falsas detectadas: ${falseLines}`, 38, 168);
+// === AI PATCH ===
+ctx.fillText("Presiona 'N' para siguiente nivel", 38, 176);
   // AI_SAFE_ZONE_END
 }
 
