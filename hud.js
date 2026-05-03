@@ -49,6 +49,8 @@ function drawHud() {
   // AI_SAFE_ZONE_START
   // El simbionte puede añadir aquí mejoras pequeñas y seguras.
   // Usa ctx y state. No uses import/export. No crees funciones nuevas.
+// === AI PATCH ===
+ctx.fillText(`Líneas falsas detectadas: ${falseLines} (${Math.round((falseLines / (falseLines + 0.0001)) * 100)}%)`, 38, 152);
   // AI_SAFE_ZONE_END
 }
 

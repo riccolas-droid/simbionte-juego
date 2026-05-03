@@ -1,5 +1,5 @@
 {
   "file": "hud.js",
-  "description": "Agrega un valor mínimo al porcentaje de coherencia para evitar mostrar valores negativos.",
-  "code": "ctx.fillText(`Coherencia: ${Math.max(0, Math.round(coherence))}%`, 38, 104);"
+  "description": "Mostrar el porcentaje de líneas falsas detectadas en el HUD para mayor claridad",
+  "code": "ctx.fillText(`Líneas falsas detectadas: ${falseLines} (${Math.round((falseLines / (falseLines + 0.0001)) * 100)}%)`, 38, 152);"
 }
