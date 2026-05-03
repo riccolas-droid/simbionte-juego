@@ -19,8 +19,22 @@ ${backlog}
 Instrucciones:
 - Haz solo una mejora.
 - No rompas el juego.
-- Ejecuta npm test si puedes.
-- Escribe un informe en agent/nightly_report.md.
+- No modifiques archivos fuera de: hud.js, index.html.
+- La mejora debe ser pequeña y segura.
+- No inventes archivos nuevos.
+
+RESPONDE SOLO EN JSON CON ESTE FORMATO:
+
+{
+  "file": "hud.js o index.html",
+  "description": "qué mejora haces",
+  "code": "código exacto a insertar"
+}
+
+IMPORTANTE:
+- NO escribas texto fuera del JSON
+- NO expliques nada fuera del JSON
+- SOLO devuelve JSON válido
 `;
 
 fs.writeFileSync("agent/COMPILED_AGENT_PROMPT.md", output.trim());
