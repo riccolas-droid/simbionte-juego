@@ -56,8 +56,13 @@ jobs:
 
           echo "Archivo objetivo: $FILE"
 
-          if [[ "$FILE" != "hud.js" && "$FILE" != "index.html" ]]; then
-            echo "Archivo no permitido. Abortando."
+          if [[ "$FILE" != "hud.js" ]]; then
+            echo "De momento solo se permite modificar hud.js. Abortando."
+            exit 1
+          fi
+
+          if echo "$CODE" | grep -q "export "; then
+            echo "Código con export detectado. Abortando para no romper el juego."
             exit 1
           fi
 
