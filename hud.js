@@ -58,6 +58,19 @@ ctx.fillText("Presiona 'N' para siguiente nivel", 38, 176);
 // === AI PATCH ===
 ctx.fillText("VISIÓN SIMBIÓTICA", 38, 50);
 ctx.fillRect(38, 54, ctx.measureText("VISIÓN SIMBIÓTICA").width, 2);
+// === AI PATCH ===
+ctx.fillStyle = "rgba(0,0,0,0.48)";
+ctx.beginPath();
+ctx.moveTo(40, 20);
+ctx.lineTo(350, 20);
+ctx.quadraticCurveTo(350, 20, 350, 40);
+ctx.lineTo(350, 170);
+ctx.quadraticCurveTo(350, 170, 330, 170);
+ctx.lineTo(20, 170);
+ctx.quadraticCurveTo(20, 170, 20, 150);
+ctx.lineTo(20, 40);
+ctx.quadraticCurveTo(20, 20, 40, 20);
+ctx.fill();
   // AI_SAFE_ZONE_END
 }
 

@@ -1,5 +1,5 @@
 {
   "file": "hud.js",
-  "description": "Mejora la legibilidad del HUD subrayando el título VISIÓN SIMBIÓTICA.",
-  "code": "ctx.fillText(\"VISIÓN SIMBIÓTICA\", 38, 50);\nctx.fillRect(38, 54, ctx.measureText(\"VISIÓN SIMBIÓTICA\").width, 2);"
+  "description": "Mejora visual: añado un borde redondeado al fondo del HUD para una apariencia más suave",
+  "code": "ctx.fillStyle = \"rgba(0,0,0,0.48)\";\nctx.beginPath();\nctx.moveTo(40, 20);\nctx.lineTo(350, 20);\nctx.quadraticCurveTo(350, 20, 350, 40);\nctx.lineTo(350, 170);\nctx.quadraticCurveTo(350, 170, 330, 170);\nctx.lineTo(20, 170);\nctx.quadraticCurveTo(20, 170, 20, 150);\nctx.lineTo(20, 40);\nctx.quadraticCurveTo(20, 20, 40, 20);\nctx.fill();"
 }
