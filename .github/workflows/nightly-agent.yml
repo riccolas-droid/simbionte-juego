@@ -85,14 +85,15 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
 
+
+      - name: Test
+        run: npm test
+
       - name: Run agent cycle in Supabase
         run: node scripts/run-agent-cycle.js
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-      
-      - name: Test
-        run: npm test
 
       - name: Commit agent response
         run: |
