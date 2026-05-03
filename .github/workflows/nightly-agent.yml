@@ -42,6 +42,12 @@ jobs:
 
           cat agent/last_response.json
 
+
+      - name: Extract AI text
+        run: |
+          cat agent/last_response.json | jq -r '.output[0].content[0].text' > agent/last_text.txt
+          cat agent/last_text.txt
+          
       - name: Test
         run: npm test
 
@@ -54,8 +60,5 @@ jobs:
           git commit -m "🤖 Nightly: save agent response" || echo "No changes to commit"
           git push
 
-      - name: Extract AI text
-        run: |
-          cat agent/last_response.json | jq -r '.output[0].content[0].text' > agent/last_text.txt
-          cat agent/last_text.txt
+
    
