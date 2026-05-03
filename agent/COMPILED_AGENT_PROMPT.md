@@ -209,5 +209,29 @@ loop();
 Instrucciones:
 - Haz solo una mejora.
 - No rompas el juego.
-- Ejecuta npm test si puedes.
-- Escribe un informe en agent/nightly_report.md.
+- No modifiques archivos fuera de: hud.js, index.html.
+- La mejora debe ser pequeña y segura.
+- No inventes archivos nuevos.
+- El código debe ser directamente insertable (sin markdown, sin ```).
+
+RESPONDE SOLO EN JSON VÁLIDO CON ESTE FORMATO EXACTO:
+
+{
+  "file": "hud.js o index.html",
+  "description": "qué mejora haces",
+  "code": "código exacto a insertar sin markdown"
+}
+
+IMPORTANTE:
+- NO escribas texto fuera del JSON
+- NO expliques nada fuera del JSON
+- NO uses bloques de código (```)
+- SOLO devuelve JSON válido
+
+Si no puedes cumplir el formato, responde exactamente:
+
+{
+  "file": "",
+  "description": "ERROR",
+  "code": ""
+}
