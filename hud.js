@@ -59,12 +59,10 @@ function drawHud() {
 
   ctx.font = "16px system-ui";
   ctx.fillStyle = "#8cff9b";
-  ctx.fillText("Estado: estable", 40, 246);
-  ctx.fillText("Próxima mutación: ciclo nocturno", 40, 272);
 
-  
-// === AI PATCH ===
-ctx.fillStyle = "#faa"; ctx.font = "12px system-ui"; ctx.fillText(`Falsas: ${state.falseLines}`, canvas.width - 100, 40);
+  aiHudLines.forEach((line, index) => {
+    ctx.fillText(line, 40, 246 + index * 26);
+  });
   // AI_SAFE_ZONE_END
 }
 
