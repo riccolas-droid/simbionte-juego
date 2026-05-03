@@ -21,19 +21,19 @@ async function insertAgent(role, status, message) {
 }
 
 async function main() {
-  await insertAgent("designer", "running", "Explorando posibles mejoras");
-  await insertAgent("designer", "done", "Propone mejorar feedback visual");
+  await insertAgent("designer", "running", "Analizando estado actual y posibles mejoras");
+  await insertAgent("designer", "done", "Propone una mejora pequeña del HUD o feedback visual");
 
-  await insertAgent("architect", "running", "Revisando dónde encaja el cambio");
-  await insertAgent("architect", "done", "Cambio permitido dentro de hud.js");
+  await insertAgent("architect", "running", "Revisando reglas, zona segura y archivo permitido");
+  await insertAgent("architect", "done", "Cambio limitado a hud.js dentro de la zona segura");
 
-  await insertAgent("coder", "running", "Generando patch pequeño");
-  await insertAgent("coder", "done", "Patch generado correctamente");
+  await insertAgent("coder", "running", "El workflow genera y aplica el patch de IA");
+  await insertAgent("coder", "done", "Patch aplicado al juego si pasó las reglas");
 
-  await insertAgent("tester", "running", "Validando que el juego no rompe");
-  await insertAgent("tester", "done", "Validación completada sin errores");
+  await insertAgent("tester", "running", "Ejecutando validación automática");
+  await insertAgent("tester", "done", "Tests completados por el workflow");
 
-  await insertAgent("memory", "done", "Estado del ciclo guardado");
+  await insertAgent("memory", "done", "Ciclo registrado en Supabase");
 }
 
 main();
