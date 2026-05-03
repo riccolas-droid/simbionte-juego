@@ -7,7 +7,7 @@ const backlog = fs.readFileSync("agent/backlog.json", "utf8");
 const output = `
 # Prompt para el agente nocturno
 
-Lee estas reglas y mejora el juego con un cambio pequeño y verificable.
+Lee estas reglas y mejora el HUD del juego con una mejora pequeña y segura.
 
 ${rules}
 
@@ -16,58 +16,52 @@ ${brief}
 Backlog:
 ${backlog}
 
-Instrucciones:
-- Haz solo una mejora.
-- No rompas el juego.
-- NO modifiques index.html.
-- Solo puedes modificar hud.js.
-- NO crees funciones nuevas.
+Estado actual:
+- El juego ya tiene HUD.
+- El HUD ya muestra nivel, coherencia, distorsión y líneas falsas.
+- Existe un array llamado aiHudLines.
+- El sistema dibuja automáticamente las líneas de aiHudLines.
+- Tú NO debes dibujar nada directamente.
+
+Objetivo:
+- Añadir UNA sola línea informativa al HUD.
+- La línea debe ayudar al jugador a entender mejor el estado del juego.
+
+Reglas estrictas:
+- NO devuelvas JSON objeto.
+- NO devuelvas código.
+- NO uses ctx.
+- NO uses canvas.
+- NO uses function.
+- NO uses import.
 - NO uses export.
-- El código debe estar pensado para insertarse dentro de la zona AI_SAFE_ZONE de hud.js.
+- NO uses punto y coma.
+- NO uses coordenadas.
+- NO expliques nada.
+- NO uses markdown.
+- Devuelve SOLO un JSON string válido.
 
-- No escribas llamadas directas a ctx.
-- No uses coordenadas.
-- No uses canvas.width.
-- Solo puedes añadir una línea dentro de aiHudLines.
-- Devuelve únicamente el texto que quieres añadir.
- 
-- No uses variables sueltas como falseLines, coherence o distortion.
-- Usa siempre state.falseLines, state.coherence, state.distortion.
-- No dibujes fondos ni rectángulos dentro de AI_SAFE_ZONE.
-- Solo añade texto o indicadores pequeños.
+Variables permitidas dentro del texto:
+- \${state.falseLines}
+- \${state.totalLines}
+- \${state.coherence}
+- \${state.distortion}
+- \${state.levelName}
 
-- No uses import ni export.
-- No reemplaces funciones existentes.
-- NO reemplaces el archivo completo.
-- Solo puedes añadir 1 o 2 líneas simples al código existente.
-- La mejora debe ser pequeña y segura.
-- No inventes archivos nuevos.
-- El código debe ser directamente insertable.
-- Si dudas, responde ERROR.
+Ejemplo válido:
+"Falsas detectadas: \${state.falseLines}/\${state.totalLines}"
 
-RESPONDE SOLO EN JSON VÁLIDO CON ESTE FORMATO EXACTO:
+Ejemplo válido:
+"Coherencia actual: \${state.coherence}%"
 
+Ejemplo inválido:
 {
   "file": "hud.js",
-  "description": "qué mejora haces",
-  "code": "código exacto a insertar sin markdown"
+  "code": "ctx.fillText(...)"
 }
 
-IMPORTANTE:
-- NO escribas texto fuera del JSON
-- NO expliques nada fuera del JSON
-- NO uses bloques de código
-- SOLO devuelve JSON válido
-- NO uses import
-- NO uses export
-
-Si no puedes cumplir el formato, responde exactamente:
-
-{
-  "file": "",
-  "description": "ERROR",
-  "code": ""
-}
+Si dudas, responde exactamente:
+"ERROR"
 `;
 
 fs.writeFileSync("agent/COMPILED_AGENT_PROMPT.md", output.trim());
