@@ -47,39 +47,35 @@ jobs:
           cat agent/last_response.json | jq -r '.output[0].content[0].text' > agent/last_text.txt
           cat agent/last_text.txt
 
-      - name: Apply AI patch real safe mode
+      - name: Apply AI HUD line safe mode
         run: |
-          JSON=$(cat agent/last_text.txt)
+          TEXT=$(cat agent/last_text.txt | jq -r '.')
 
-          FILE=$(echo "$JSON" | jq -r '.file')
-          CODE=$(echo "$JSON" | jq -r '.code')
+          echo "Texto generado: $TEXT"
 
-          echo "Archivo objetivo: $FILE"
-
-          if [[ "$FILE" != "hud.js" ]]; then
-            echo "Solo se permite modificar hud.js. Abortando."
+          if [[ -z "$TEXT" || "$TEXT" == "null" ]]; then
+            echo "Texto vacío. Abortando."
             exit 1
           fi
 
-          if echo "$CODE" | grep -q "export "; then
-            echo "Código con export detectado. Abortando."
+          if echo "$TEXT" | grep -q "ctx\|canvas\|function\|export\|import\|=>\|;"; then
+            echo "Texto contiene código prohibido. Abortando."
             exit 1
           fi
 
-          if ! grep -q "AI_SAFE_ZONE_END" hud.js; then
-            echo "No existe AI_SAFE_ZONE_END en hud.js. Abortando."
+          if ! grep -q "const aiHudLines = \[" hud.js; then
+            echo "No existe aiHudLines en hud.js. Abortando."
             exit 1
           fi
 
-          awk -v code="$CODE" '
-            /\/\/ AI_SAFE_ZONE_END/ {
-              print "// === AI PATCH ==="
-              print code
+          awk -v newline="$TEXT" '
+            /const aiHudLines = \[/ {
+              print
+              print "  `" newline "`,"
+              next
             }
             { print }
           ' hud.js > hud.tmp && mv hud.tmp hud.js
-
-
 
       - name: Test
         run: npm test
@@ -97,5 +93,5 @@ jobs:
 
           git add agent/last_response.json agent/last_text.txt agent/COMPILED_AGENT_PROMPT.md hud.js index.html
 
-          git commit -m "🤖 Nightly: apply agent patch $(date)" || echo "No changes to commit"
+          git commit -m "🤖 Nightly: apply agent HUD line $(date)" || echo "No changes to commit"
           git push
