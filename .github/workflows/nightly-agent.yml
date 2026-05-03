@@ -57,18 +57,27 @@ jobs:
           echo "Archivo objetivo: $FILE"
 
           if [[ "$FILE" != "hud.js" ]]; then
-            echo "De momento solo se permite modificar hud.js. Abortando."
+            echo "Solo se permite modificar hud.js. Abortando."
             exit 1
           fi
 
           if echo "$CODE" | grep -q "export "; then
-            echo "Código con export detectado. Abortando para no romper el juego."
+            echo "Código con export detectado. Abortando."
             exit 1
           fi
 
-          echo "" >> "$FILE"
-          echo "// === AI PATCH $(date) ===" >> "$FILE"
-          echo "$CODE" >> "$FILE"
+          if ! grep -q "AI_SAFE_ZONE_END" hud.js; then
+            echo "No existe AI_SAFE_ZONE_END en hud.js. Abortando."
+            exit 1
+          fi
+
+          awk -v code="$CODE" '
+            /\/\/ AI_SAFE_ZONE_END/ {
+              print "// === AI PATCH ==="
+              print code
+            }
+            { print }
+          ' hud.js > hud.tmp && mv hud.tmp hud.js
 
       - name: Test
         run: npm test
