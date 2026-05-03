@@ -56,6 +56,8 @@ function drawHud() {
   ctx.fillText("Próxima mutación: ciclo nocturno", 40, 272);
 
   
+// === AI PATCH ===
+ctx.fillStyle = "#faa"; ctx.font = "12px system-ui"; ctx.fillText(`Falsas: ${state.falseLines}`, canvas.width - 100, 40);
   // AI_SAFE_ZONE_END
 }
 

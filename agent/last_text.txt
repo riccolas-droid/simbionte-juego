@@ -1,5 +1,5 @@
 {
   "file": "hud.js",
-  "description": "Mejora visual: añado un borde redondeado al fondo del HUD para una apariencia más suave",
-  "code": "ctx.fillStyle = \"rgba(0,0,0,0.48)\";\nctx.beginPath();\nctx.moveTo(40, 20);\nctx.lineTo(350, 20);\nctx.quadraticCurveTo(350, 20, 350, 40);\nctx.lineTo(350, 170);\nctx.quadraticCurveTo(350, 170, 330, 170);\nctx.lineTo(20, 170);\nctx.quadraticCurveTo(20, 170, 20, 150);\nctx.lineTo(20, 40);\nctx.quadraticCurveTo(20, 20, 40, 20);\nctx.fill();"
+  "description": "Añadido un indicador pequeño de las líneas falsas en la esquina superior derecha, reforzando la información de HUD sin modificar el área principal.",
+  "code": "ctx.fillStyle = \"#faa\"; ctx.font = \"12px system-ui\"; ctx.fillText(`Falsas: ${state.falseLines}`, canvas.width - 100, 40);"
 }
