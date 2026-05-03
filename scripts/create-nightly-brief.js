@@ -22,19 +22,29 @@ Instrucciones:
 - No modifiques archivos fuera de: hud.js, index.html.
 - La mejora debe ser pequeña y segura.
 - No inventes archivos nuevos.
+- El código debe ser directamente insertable (sin markdown, sin \`\`\`).
 
-RESPONDE SOLO EN JSON CON ESTE FORMATO:
+RESPONDE SOLO EN JSON VÁLIDO CON ESTE FORMATO EXACTO:
 
 {
   "file": "hud.js o index.html",
   "description": "qué mejora haces",
-  "code": "código exacto a insertar"
+  "code": "código exacto a insertar sin markdown"
 }
 
 IMPORTANTE:
 - NO escribas texto fuera del JSON
 - NO expliques nada fuera del JSON
+- NO uses bloques de código (\`\`\`)
 - SOLO devuelve JSON válido
+
+Si no puedes cumplir el formato, responde exactamente:
+
+{
+  "file": "",
+  "description": "ERROR",
+  "code": ""
+}
 `;
 
 fs.writeFileSync("agent/COMPILED_AGENT_PROMPT.md", output.trim());
