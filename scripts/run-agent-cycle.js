@@ -6,11 +6,16 @@ const supabase = createClient(
 );
 
 async function insertAgent(role, status, message) {
-  const { error } = await supabase.from("agents").insert({
+ const { error } = await supabase.from("agents").upsert(
+  {
     role,
     status,
     message,
-  });
+  },
+  {
+    onConflict: "role",
+  }
+);
 
   if (error) {
     console.error(error);
