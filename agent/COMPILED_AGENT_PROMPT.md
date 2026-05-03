@@ -209,15 +209,21 @@ loop();
 Instrucciones:
 - Haz solo una mejora.
 - No rompas el juego.
-- No modifiques archivos fuera de: hud.js, index.html.
+- NO modifiques index.html.
+- Solo puedes modificar hud.js.
+- NO crees funciones nuevas.
+- NO uses export.
+- NO reemplaces el archivo completo.
+- Solo puedes añadir 1 o 2 líneas simples al código existente.
 - La mejora debe ser pequeña y segura.
 - No inventes archivos nuevos.
-- El código debe ser directamente insertable (sin markdown, sin ```).
+- El código debe ser directamente insertable.
+- Si dudas, responde ERROR.
 
 RESPONDE SOLO EN JSON VÁLIDO CON ESTE FORMATO EXACTO:
 
 {
-  "file": "hud.js o index.html",
+  "file": "hud.js",
   "description": "qué mejora haces",
   "code": "código exacto a insertar sin markdown"
 }
@@ -225,8 +231,10 @@ RESPONDE SOLO EN JSON VÁLIDO CON ESTE FORMATO EXACTO:
 IMPORTANTE:
 - NO escribas texto fuera del JSON
 - NO expliques nada fuera del JSON
-- NO uses bloques de código (```)
+- NO uses bloques de código
 - SOLO devuelve JSON válido
+- NO uses import
+- NO uses export
 
 Si no puedes cumplir el formato, responde exactamente:
 

@@ -1,5 +1,5 @@
 {
   "file": "hud.js",
-  "description": "Cambio pequeño: agrego porcentaje a la cantidad de líneas falsas detectadas en la HUD para dar feedback adicional.",
-  "code": "export function drawHud(ctx, state) {\n  const { levelName, coherence, distortion, falseLines, totalLines } = state;\n\n  ctx.save();\n  ctx.globalAlpha = 0.9;\n  ctx.fillStyle = \"rgba(0,0,0,0.48)\";\n  ctx.fillRect(20, 20, 330, 150);\n\n  ctx.strokeStyle = \"rgba(255,255,255,0.25)\";\n  ctx.strokeRect(20, 20, 330, 150);\n\n  ctx.fillStyle = \"#f3f3f3\";\n  ctx.font = \"16px system-ui\";\n  ctx.fillText(\"VISIÓN SIMBIÓTICA\", 38, 50);\n\n  ctx.font = \"13px system-ui\";\n  ctx.fillText(levelName, 38, 76);\n  ctx.fillText(`Coherencia: ${Math.round(coherence)}%`, 38, 104);\n  ctx.fillText(`Distorsión: ${Math.round(distortion)}%`, 38, 128);\n  ctx.fillText(`Líneas falsas detectadas: ${falseLines} (${totalLines>0?Math.round(falseLines/totalLines*100):0}%)`, 38, 152);\n\n  ctx.restore();\n}"
+  "description": "Agrega título 'HUD' para mejorar la accesibilidad visual en el HUD",
+  "code": "ctx.fillText(\"HUD\", 38, 30);"
 }

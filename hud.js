@@ -22,3 +22,6 @@ ctx.moveTo(80, canvas.height - 80);
 ctx.lineTo(canvas.width / 2, canvas.height / 3);
 ctx.lineTo(canvas.width - 80, canvas.height - 80);
 ctx.stroke();
+
+// === AI PATCH Sun May  3 02:07:45 UTC 2026 ===
+ctx.fillText("HUD", 38, 30);
