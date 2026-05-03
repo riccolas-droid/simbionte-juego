@@ -6,7 +6,7 @@
     "agent:brief": "node scripts/create-nightly-brief.js"
   },
   "dependencies": {
-    "vite": "latest"
+    "vite": "latest",
     "@supabase/supabase-js": "latest"
   },
   "devDependencies": {}
